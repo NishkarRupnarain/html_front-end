@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,7 +25,9 @@
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Vendor CSS-->
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
@@ -24,86 +35,305 @@
 
     <!-- Main CSS-->
     <link href="css/main.css" rel="stylesheet" media="all">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+        /* Styles */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Poppins";
+            font-size: 14px;
+            background: -webkit-gradient(linear, left bottom, left top, from(#fbc2eb), to(#a18cd1));
+            background: -webkit-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+            background: -moz-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+            background: -o-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+            background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%);
+            background: -webkit-gradient(linear, left bottom, right top, from(#fc2c77), to(#6c4079));
+            background: -webkit-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
+            background: -moz-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
+            background: -o-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
+            background: linear-gradient(to top right, #fc2c77 0%, #6c4079 100%);
+
+        }
+
+        .container {
+            width: 500px;
+            margin: 25px auto;
+        }
+
+        .title {
+            margin-bottom: 1rem;
+        }
+
+        form {
+            padding: 20px;
+            background: #e9967a;
+            color: #000000;
+            border-radius: 4px;
+        }
+
+        form label,
+        form input,
+        form button {
+            border: 0;
+            margin-bottom: 3px;
+            display: block;
+            width: 100%;
+        }
+
+        form input {
+            height: 25px;
+            line-height: 25px;
+            background: #fff;
+            color: #000;
+            padding: 0 6px;
+            box-sizing: border-box;
+        }
+
+        form button {
+            height: 30px;
+            line-height: 30px;
+            background: #e67e22;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            cursor: pointer;
+        }
+
+        form .error {
+            color: #ff0000;
+        }
+
+        .article-reference {
+            margin-top: 15px;
+        }
+
+        .article-reference a {
+            color: #e67e22;
+        }
+
+        .title {
+            color: rgb(0, 0, 0);
+        }
+
+        .column {
+            float: left;
+            width: 50%;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+    <!-- <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Registration Form</h2>
                     <form method="POST">
-                    <div class="row row-space">
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label class="label">First name</label>
-                                <input class="input--style-4" type="text" name="first_name">
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label class="label">Last name</label>
-                                <input class="input--style-4" type="text" name="last_name">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row row-space">
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label class="label">ID Number</label>
-                                <div class="input-group-icon">
-                                    <input class="input--style-4" type="text" name="ID Number">
-                                    <!--<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> -->
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">First name</label>
+                                    <input class="input--style-4" type="text" name="first_name" id="first_name">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="input-group">
-                                <label class="label">Username</label>
-                                <div class="input-group-icon">
-                                    <input class="input--style-4" type="text" name="Username">
-                                    <div class="p-t-10">
-                                    </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Last name</label>
+                                    <input class="input--style-4" type="text" name="last_name">
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Email</label>
-                                    <input class="input--style-4" type="email" name="email">
+                                    <label class="label">ID Number</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4" type="text" name="ID_number">
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
-                                    <label class="label">Phone Number</label>
-                                    <input class="input--style-4" type="text" name="phone">
+                                    <label class="label">Username</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4" type="text" name="username">
+                                        <div class="p-t-10">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="input-group">
-                            <label class="label">Password</label>
-                            <input class="input--style-4" type="email" name="email">
-                        </div>
-                        <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
-                        </div>
+                            <div class="row row-space">
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Email</label>
+                                        <input class="input--style-4" type="email" name="email">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label">Phone Number</label>
+                                        <input class="input--style-4" type="text" name="phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label class="label">Password</label>
+                                <input class="input--style-4" type="password" name="password">
+                            </div>
+                            <div class="p-t-15">
+                                <button class="btn btn--blue" type="button" id="button" name="button"
+                                    onclick="addUser()">Submit</button>
+                            </div>
                     </form>
-                    </div>
+                </div>
             </div>
+        </div>
+    </div> -->
+
+    <div class="column">
+        <div class="container">
+            <h2 class="title">Registration Details</h2>
+            <form action="#" name="registration">
+
+                <label for="firstname">First Name</label>
+                <input type="text" name="firstname" id="firstname" placeholder="John">
+
+                <label for="lastname">Last Name</label>
+                <input type="text" name="lastname" id="lastname" placeholder="Doe">
+
+                <label for="id_number">ID Number</label>
+                <input type="text" name="id_number" id="id_number" placeholder="ID Number">
+
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="">
+
+                <label for="mobileNumber">Mobile Number</label>
+                <input type="text" name="mobileNumber" id="mobileNumber" placeholder="">
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="john@doe.com">
+
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="●●●●●">
+
+                <!-- <button type="submit" style="background-color:rgb(80, 84, 162); border-color:fc2c77; color:black">Register</button> -->
+            </form>
         </div>
     </div>
 
-    <!-- Jquery JS-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <!-- Vendor JS-->
-    <script src="vendor/select2/select2.min.js"></script>
-    <script src="vendor/datepicker/moment.min.js"></script>
-    <script src="vendor/datepicker/daterangepicker.js"></script>
 
-    <!-- Main JS-->
-    <script src="js/global.js"></script>
+    <div class="row">
 
+        <div class="column">
+            <div class="container">
+                <h2 class="title">Address</h2>
+                <form action="#" name="registration">
+
+                    <label for="addressLine_1">Address Line 1</label>
+                    <input type="text" name="addressLine_1" id="addressLine_1" placeholder="John">
+
+                    <label for="addressLine_2">Address Line 2</label>
+                    <input type="text" name="addressLine_2" id="addressLine_2" placeholder="John">
+
+                    <label for="addressLine_3">Address Line 3</label>
+                    <input type="text" name="addressLine_3" id="addressLine_3" placeholder="John">
+
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city" placeholder="John">
+
+                    <label for="postalCode">Postal Code</label>
+                    <input type="text" name="postalCode" id="postalCode" placeholder="John">
+
+                    <label for="country">Country</label>
+                    <input type="text" name="country" id="country" placeholder="John">
+
+                    <button type="submit" style="background-color:rgb(80, 84, 162); border-color:fc2c77; color:black">
+                        Register</button>
+                </form>
+            </div>
+        </div>
+        
+
+
+        <script type="text/javascript">
+            // Wait for the DOM to be ready
+            $(function () {
+                // Initialize form validation on the registration form.
+                // It has the name attribute "registration"
+                $("form[name='registration']").validate({
+                    // Specify validation rules
+                    rules: {
+                        // The key name on the left side is the name attribute
+                        // of an input field. Validation rules are defined
+                        // on the right side
+                        firstname: "required",
+                        lastname: "required",
+                        username: "required",
+                        mobileNumber: "required",
+                        id_number: "required",
+                        email: {
+                            required: true,
+                            // Specify that email should be validated
+                            // by the built-in "email" rule
+                            email: true
+                        },
+                        password: {
+                            required: true,
+                            minlength: 5
+                        }
+
+                    },
+                    // Specify validation error messages
+                    messages: {
+                        firstname: "Please enter your firstname",
+                        lastname: "Please enter your lastname",
+                        password: {
+                            required: "Please provide a password",
+                            minlength: "Your password must be at least 5 characters long"
+                        },
+                        email: "Please enter a valid email address",
+                        username: "Username already taken"
+                    },
+                    // Make sure the form is submitted to the destination defined
+                    // in the "action" attribute of the form when valid
+                    submitHandler: function (form) {
+                        form.submit();
+                        console.log(form);
+                        $.ajax({
+                            url: "http://localhost:8181/api/v1/users/",
+                            method: "POST",
+                            data: form,
+                            dataType: 'application/json',
+                            contentType: "application/json",
+                            success: function (result) {
+                                alert(result);
+                            },
+                            error() {
+                                console.log('Error');
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
 </body>
+
 </html>
 <!-- end document-->

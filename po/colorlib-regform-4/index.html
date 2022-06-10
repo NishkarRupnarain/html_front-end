@@ -51,17 +51,16 @@
         body {
             font-family: "Poppins";
             font-size: 14px;
-            background: -webkit-gradient(linear, left bottom, left top, from(#fbc2eb), to(#a18cd1));
+            background: -webkit-repeating-radial-gradient(linear, left bottom, left top, from(#fbc2eb), to(#a18cd1));
             background: -webkit-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
             background: -moz-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
             background: -o-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
             background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%);
-            background: -webkit-gradient(linear, left bottom, right top, from(#fc2c77), to(#6c4079));
+            background: -webkit-repeating-radial-gradient(linear, left bottom, right top, from(#fc2c77), to(#6c4079));
             background: -webkit-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
             background: -moz-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
             background: -o-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
             background: linear-gradient(to top right, #fc2c77 0%, #6c4079 100%);
-
         }
 
         .container {
@@ -233,12 +232,12 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="●●●●●">
 
-                <!-- <button type="submit" style="background-color:rgb(80, 84, 162); border-color:fc2c77; color:black">Register</button> -->
+                <button type="submit" style="background-color:rgb(80, 84, 162); border-color:fc2c77; color:black">Register</button>
             </form>
         </div>
     </div>
 
-
+<!-- 
     <div class="row">
 
         <div class="column">
@@ -269,7 +268,7 @@
                 </form>
             </div>
         </div>
-        
+         -->
 
 
         <script type="text/javascript">
@@ -314,19 +313,48 @@
                     // Make sure the form is submitted to the destination defined
                     // in the "action" attribute of the form when valid
                     submitHandler: function (form) {
-                        form.submit();
+                        // form.submit();
+
+                        // var obj = {
+                        //     "firstName" : document.getElementById("firstname").value,
+                        //     "lastName" : document.getElementById("lastname").value,
+                        //     "idNumber" : document.getElementById("id_number").value,
+                        //     "email" : document.getElementById("email").value,
+                        //     "username" : document.getElementById("username").value,
+                        //     "mobileNumber" : document.getElementById("mobileNumber").value,
+                        //     "password" : document.getElementById("password").value
+                        // }
+
+//                         {
+//     "firstName" : "sadsad",
+//     "lastName" : "Tusadsadrd",
+//     "idNumber" : "885406123438",
+//     "email" : "7@gfail.com",
+//     "username" : "s454dad",
+//     "mobileNumber" : "9589226",
+//     "password" : "1234"
+// }
+
                         console.log(form);
                         $.ajax({
                             url: "http://localhost:8181/api/v1/users/",
                             method: "POST",
-                            data: form,
-                            dataType: 'application/json',
+                            data: JSON.stringify({
+                                "firstName" : document.getElementById("firstname").value,
+                            "lastName" : document.getElementById("lastname").value,
+                            "idNumber" : document.getElementById("id_number").value,
+                            "email" : document.getElementById("email").value,
+                            "username" : document.getElementById("username").value,
+                            "mobileNumber" : document.getElementById("mobileNumber").value,
+                            "password" : document.getElementById("password").value
+                            }),
+                            dataType: 'json',
                             contentType: "application/json",
                             success: function (result) {
                                 alert(result);
                             },
-                            error() {
-                                console.log('Error');
+                            error(error) {
+                                console.log('Error', error);
                             }
                         });
                     }
@@ -337,3 +365,21 @@
 
 </html>
 <!-- end document-->
+<!-- 
+$("#button").click(function(){
+    $.post("http://localhost:8181/api/v1/users",
+    {
+        "firstName" : document.getElementsByName("first_name").value,
+            "lastName" : document.getElementsByName("last_name").value,
+            "idNumber" : document.getElementsByName("ID_number").value,
+            "email" : document.getElementsByName("email").value,
+            "username" : document.getElementsByName("username").value,
+            "mobileNumber" : document.getElementsByName("phone").value,
+            "password" : document.getElementsByName("password").value,
+            "createdAt": current.toLocaleString()
+    },
+    function(data, status){
+        window.alert("Data: " + data + "\nStatus: " + status);
+    });
+    console.log(document.getElementById("fist_name").value);
+    }); -->

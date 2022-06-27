@@ -11,7 +11,7 @@
     </script>
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <!-- <link href="img/favicon.ico" rel="icon"> -->
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -31,39 +31,6 @@
     <!--  -->
 
     <!-- Sytle -->
-    <style>
-        table {
-            margin: 0 auto;
-            font-size: large;
-            border: 1px solid black;
-        }
-
-        h1 {
-            text-align: center;
-            color: #000000;
-            font-size: xx-large;
-            font-family: 'Gill Sans',
-                'Gill Sans MT', ' Calibri',
-                'Trebuchet MS', 'sans-serif';
-        }
-
-        td {
-            background-color: #E4F5D4;
-            border: 1px solid black;
-        }
-
-        th,
-        td {
-            font-weight: bold;
-            border: 1px solid black;
-            padding: 10px;
-            text-align: center;
-        }
-
-        td {
-            font-weight: lighter;
-        }
-    </style>
 <button id="btn">Fetch Info</button>
 </head>
 
@@ -348,9 +315,9 @@
                     </form>
                 </div>
                 <!-- Size End -->
-                <button type="button" id="fetchBtn" class="btn btn-primary">
+                <!-- <button type="button" id="fetchBtn" class="btn btn-primary">
                     Fetch Data
-                </button>
+                </button> -->
             </div>
             <!-- Shop Sidebar End -->
 
@@ -395,7 +362,7 @@
                     var htmlString = "";
 
                     for (i = 0; i < data.length; i++) {
-                        
+
                         htmlString += "<div>" + "<div>" + "<img src =" + data[i].name + ">" + "<div>" + "<p>" + data[i].desc
                             + "<br>" + data[i].sku + " " + data[i].catergory + " price: R" + data[i].price
                             + "</p>"

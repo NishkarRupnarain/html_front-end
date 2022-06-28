@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
+
+    
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Geeks4Learning Login</title>
+
+    <!-- Icons font CSS-->
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/main.css" rel="stylesheet" media="all">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+        /* Styles */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Poppins";
+            font-size: 14px;
+            background: -webkit-repeating-radial-gradient(linear, left bottom, left top, from(#fbc2eb), to(#a18cd1));
+            background: -webkit-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+            background: -moz-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+            background: -o-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
+            background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%);
+            background: -webkit-repeating-radial-gradient(linear, left bottom, right top, from(#fc2c77), to(#6c4079));
+            background: -webkit-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
+            background: -moz-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
+            background: -o-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
+            background: linear-gradient(to top right, #fc2c77 0%, #6c4079 100%);
+        }
+
+        .container {
+            width: 500px;
+            margin: 25px auto;
+        }
+
+        .title {
+            margin-bottom: 1rem;
+        }
+
+        form {
+            padding: 20px;
+            background: #e9967a;
+            color: #000000;
+            border-radius: 4px;
+        }
+
+        form label,
+        form input,
+        form button {
+            border: 0;
+            margin-bottom: 3px;
+            display: block;
+            width: 100%;
+        }
+
+        form input {
+            height: 25px;
+            line-height: 25px;
+            background: #fff;
+            color: #000;
+            padding: 0 6px;
+            box-sizing: border-box;
+        }
+
+        form button {
+            height: 30px;
+            line-height: 30px;
+            background: #e67e22;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            cursor: pointer;
+        }
+
+        form .error {
+            color: #ff0000;
+        }
+
+        .article-reference {
+            margin-top: 15px;
+        }
+
+        .article-reference a {
+            color: #e67e22;
+        }
+
+        .title {
+            color: rgb(0, 0, 0);
+        }
+
+        .column {
+            float: left;
+            width: 50%;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        var pageCounter = 1;
+        var productsContainer = document.getElementById("productsContainer");
+        var btn = document.getElementById("btn");
+        var api = 'http://localhost:8181/api/v1/users/findByEmail/' + document.getElementById("email").value;
+        var password = document.getElementById(password).value;
+
+        btn.addEventListener("click", function () {
+            var ourRequest = new XMLHttpRequest();
+            ourRequest.open('GET', api);
+            ourRequest.onload = function () {
+                if (ourRequest.status >= 200 && ourRequest.status < 400) {
+                    var ourData = JSON.parse(ourRequest.responseText);
+                    console.log(password);
+                    console.log(ourData.password);
+                    if (password == ourData.password) {
+                        console.log("It works");
+                    }
+                } else {
+                    console.log("We connected to the server, but it returned an error.");
+                }
+
+            };
+
+            ourRequest.onerror = function () {
+                console.log("Connection error");
+            };
+
+            ourRequest.send();
+            pageCounter++;
+            if (pageCounter > 3) {
+                btn.classList.add("hide-me");
+            }
+        });
+    </script>
+    <div class="column">
+        <div class="container">
+            <h2 class="title">Login Details</h2>
+            <form action="#" name="login" id="LoginForm">
+
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" placeholder="john@doe.com">
+
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="●●●●●">
+
+                <button type="submit" id="btn"
+                    style="background-color:rgb(80, 84, 162); border-color:fc2c77; color:black">Login</button>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<!-- end document-->
+
+<!-- THE BAD STUFF START
+    
+
+    <script>
+        $("#login_btn").click(function () {
+            var email = $("#email").val();
+            var password = $("#password").val();
+            authenticate(email, password);
+        });
+
+        function authenticate(email, password) {
+            $.ajax({
+                type: "POST",
+                url: "http://api/User/login",
+                dataType: 'json',
+                async: false,
+                data: {
+                    email: email,
+                    password: password
+                },
+                success: function (data) {
+                    alert(data);
+                }
+            })
+        };
+    </script>
+    <script type="text/javascript">
+
+        function login(form) {
+            var un = form.email.value;
+            var pw = form.password.value;
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("post", "http://localhost:8181/api/v1/users", true);
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    loginResults();
+                }
+            }
+        }
+
+        window.addEventListener(window, "load", function () {
+            var loginForm = document.getElementById("LoginForm");
+            window.addEventListener(loginForm, "submit", function () {
+                login(loginForm);
+            });
+        });
+
+        function loginResults() {
+            var loggedIn = document.getElementById("LoggedIn");
+            var badLogin = document.getElementById("BadLogin");
+            if (xmlhttp.responseText.indexOf("failed") == -1) {
+                loggedIn.innerHTML = "Logged in as " + xmlhttp.responseText;
+                loggedIn.style.display = "block";
+                form.style.display = "none";
+            } else {
+                badLogin.style.display = "block";
+                form.email.select();
+                form.email.className = "Highlighted";
+                setTimeout(function () {
+                    badLogin.style.display = 'none';
+                }, 3000);
+            }
+        }
+    </script>
+THE VAS STUFF END -->

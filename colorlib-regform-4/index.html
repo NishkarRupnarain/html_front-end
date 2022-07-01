@@ -138,7 +138,7 @@
 </head>
 
 <body>
-   
+
 
     <div class="column">
         <div class="container">
@@ -166,7 +166,8 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="●●●●●">
 
-                <button type="submit" style="background-color:rgb(80, 84, 162); border-color:fc2c77; color:black">Register</button>
+                <button type="submit"
+                    style="background-color:rgb(80, 84, 162); border-color:fc2c77; color:black">Register</button>
             </form>
         </div>
     </div>
@@ -174,84 +175,82 @@
 
 
 
-        <script type="text/javascript">
-            // Wait for the DOM to be ready
-            $(function () {
-                // Initialize form validation on the registration form.
-                // It has the name attribute "registration"
-                $("form[name='registration']").validate({
-                    // Specify validation rules
-                    rules: {
-                        // The key name on the left side is the name attribute
-                        // of an input field. Validation rules are defined
-                        // on the right side
-                        firstname: "required",
-                        lastname: "required",
-                        username: "required",
-                        mobileNumber: "required",
-                        id_number: "required",
-                        email: {
-                            required: true,
-                            // Specify that email should be validated
-                            // by the built-in "email" rule
-                            email: true
-                        },
-                        password: {
-                            required: true,
-                            minlength: 5
-                        }
-
+    <script type="text/javascript">
+        // Wait for the DOM to be ready
+        $(function () {
+            // Initialize form validation on the registration form.
+            // It has the name attribute "registration"
+            $("form[name='registration']").validate({
+                // Specify validation rules
+                rules: {
+                    // The key name on the left side is the name attribute
+                    // of an input field. Validation rules are defined
+                    // on the right side
+                    firstname: "required",
+                    lastname: "required",
+                    username: "required",
+                    mobileNumber: "required",
+                    id_number: "required",
+                    email: {
+                        required: true,
+                        // Specify that email should be validated
+                        // by the built-in "email" rule
+                        email: true
                     },
-                    // Specify validation error messages
-                    messages: {
-                        firstname: "Please enter your firstname",
-                        lastname: "Please enter your lastname",
-                        password: {
-                            required: "Please provide a password",
-                            minlength: "Your password must be at least 5 characters long"
-                        },
-                        email: "Please enter a valid email address",
-                        username: "Username already taken"
-                    },
-                    // Make sure the form is submitted to the destination defined
-                    // in the "action" attribute of the form when valid
-                    submitHandler: function (form) {
-                        // form.submit();
-
-
-
-                        console.log(form);
-                        $.ajax({
-                            url: "http://localhost:8181/api/v1/users/",
-                            method: "POST",
-                            data: JSON.stringify({
-                                "firstName" : document.getElementById("firstname").value,
-                            "lastName" : document.getElementById("lastname").value,
-                            "idNumber" : document.getElementById("id_number").value,
-                            "email" : document.getElementById("email").value,
-                            "username" : document.getElementById("username").value,
-                            "mobileNumber" : document.getElementById("mobileNumber").value,
-                            "password" : document.getElementById("password").value
-                            }),
-                            dataType: 'json',
-                            contentType: "application/json",
-                            success: function (result) {
-                                alert(result);
-                            },
-                            error(error) {
-                                console.log('Error', error);
-                            }
-                        });
+                    password: {
+                        required: true,
+                        minlength: 5
                     }
-                });
+
+                },
+                // Specify validation error messages
+                messages: {
+                    firstname: "Please enter your firstname",
+                    lastname: "Please enter your lastname",
+                    password: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 5 characters long"
+                    },
+                    email: "Please enter a valid email address",
+                    username: "Username already taken"
+                },
+                // Make sure the form is submitted to the destination defined
+                // in the "action" attribute of the form when valid
+                submitHandler: function (form) {
+                    // form.submit();
+
+                    console.log(form);
+                    $.ajax({
+                        url: "http://localhost:8181/api/v1/users/",
+                        type: "POST",
+                        data: JSON.stringify({
+                            "firstName": document.getElementById("firstname").value,
+                            "lastName": document.getElementById("lastname").value,
+                            "idNumber": document.getElementById("id_number").value,
+                            "email": document.getElementById("email").value,
+                            "username": document.getElementById("username").value,
+                            "mobileNumber": document.getElementById("mobileNumber").value,
+                            "password": document.getElementById("password").value
+                        }),
+                        dataType: 'json',
+                        contentType: "application/json",
+                        success: function (result) {
+                            alert(result);
+                        },
+                        error(error) {
+                            console.log('Error', error);
+                        }
+                    });
+                }
             });
-        </script>
+        });
+    </script>
 </body>
 
 </html>
 <!-- end document-->
 
- <!-- HTML GARBAGE 
+<!-- HTML GARBAGE 
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
@@ -372,7 +371,8 @@ $("#button").click(function(){
     console.log(document.getElementById("fist_name").value);
     }); -->
 
-    <!--    JS Garbage                     // var obj = {
+<!-- JS Garbage
+    // var obj = {
                         //     "firstName" : document.getElementById("firstname").value,
                         //     "lastName" : document.getElementById("lastname").value,
                         //     "idNumber" : document.getElementById("id_number").value,

@@ -176,9 +176,34 @@
                 type: "GET",
                 dataType: "json",
                 success: function (data) {
-                    if(data.password == password){
-                        alert("Authentication Successful\nWelcom");
-                    }else{
+                    if (data.password == password) {
+                        console.log("Naugty log ->User's password: " + data.password);
+                        console.log("Naugty log ->User imput for password: " + password);
+                        var username = data.username;
+                        var userid = data.id;
+                        alert("Authentication Successful\nWelcom, " + username);
+                        //window.location.href = "file:///C:/Users/user/Documents/Nishkar%20Reverside/Springboot_Full_Stack/html%20front-end/bootstrap-shop-template/index.html";
+
+                        //TO DO : Create shopping session in Springboot <Done>
+                        //TO DO : Get User details from DTO
+                        var createShoppingSession = new XMLHttpRequest();
+                        $.ajax({
+                            url: "http://localhost:8181/api/v1/shopping_session/",
+                            type: "POST",
+                            data: JSON.stringify({
+                                "user": {
+                                    "id": userid
+                                },
+                                "total": 0
+                            }),
+                            dataType: "json",
+                            contentType: "application/json",
+                            success: function (result) {
+                                console.log("Shopping session created");
+                            }
+                        })
+
+                    } else {
                         alert("Authentication Failed\nIncorrect Password/Email");
                     }
                 }
@@ -193,8 +218,6 @@
 <!-- end document-->
 
 <!-- THE BAD STUFF START
-    
-
     <script>
         $("#login_btn").click(function () {
             var email = $("#email").val();
